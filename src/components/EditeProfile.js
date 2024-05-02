@@ -20,7 +20,7 @@ function EditProfile() {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-0">
       <h2>Profile</h2>
       <Table striped bordered hover className="mt-4">
         <thead>

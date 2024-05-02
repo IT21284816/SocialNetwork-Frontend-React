@@ -4,6 +4,9 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+
+
 import {
   RiHeartFill,
   RiHeartLine,
@@ -23,6 +26,7 @@ import {
   addShare,
   addComment,
   deletePostThunk,
+  deleteCommentThunk,
   
 } from "../feature/followingPost/followingPostSlice";
 
@@ -77,9 +81,19 @@ function PostItem(props) {
     setCommentContent("");
   }
 
-  function handleDeleteComment(commentId) {
-    // Implement your logic to delete the comment with the given commentId
-  }
+  const handleDeleteComment = (commentId) => {
+    dispatch(deleteCommentThunk({ postId: props.postId, commentId }))
+      .then((result) => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          toast.success('Comment deleted successfully!', { autoClose: 2000 }); // Show success toast
+        } else {
+          toast.error('Failed to delete comment.', { autoClose: 2000 }); // Show error toast
+        }
+      })
+      .catch((error) => {
+        toast.error(`Error: ${error.message}`, { autoClose: 2000 });
+      });
+  };
 
   function handleEditCommentClick(commentId) {
     // Implement your logic to delete the comment with the given commentId

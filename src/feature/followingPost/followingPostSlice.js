@@ -112,6 +112,36 @@ export const editPostThunk = createAsyncThunk(
   }
 );
 
+export const deleteCommentThunk = createAsyncThunk(
+  "comments/delete",
+  async ({ postId, commentId }, thunkAPI) => {
+    const token = localStorage.getItem("psnToken"); // Authorization token
+    if (!token) {
+      return thunkAPI.rejectWithValue("Authorization token missing.");
+    }
+
+    try {
+      const response = await axios({
+        method: "delete",
+        url: `/api/v1/deletecomment/${commentId}/${postId}`, // Verify this URL
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      if (response.status === 200) {
+        return { postId, commentId }; // Successful deletion
+      } else {
+        return thunkAPI.rejectWithValue("Delete comment failed.");
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error.message);
+      return thunkAPI.rejectWithValue("Error deleting comment.");
+    }
+  }
+);
+
+
 
 
 export const followingPostSlice = createSlice({

@@ -85,7 +85,7 @@ function PostItem(props) {
     dispatch(deleteCommentThunk({ postId: props.postId, commentId }))
       .then((result) => {
         if (result.meta.requestStatus === 'fulfilled') {
-          toast.success('Comment deleted successfully!', { autoClose: 2000 }); // Show success toast
+          toast.success('Comment deleted successfully!', { autoClose: 2000 }); 
         } else {
           toast.error('Failed to delete comment.', { autoClose: 2000 }); // Show error toast
         }

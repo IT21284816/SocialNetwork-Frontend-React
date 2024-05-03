@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import logo from "./assets/psn-logo-large.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
 import {
   RiNewspaperLine,
@@ -51,8 +53,9 @@ function NewsFeed() {
           </Row>
         </Col>
         <Col md={8}>
-          <div className="d-flex justify-content-center align-items-center w-100 h-100">
-            <Button variant="success" onClick={handleClick}>
+          <div className="d-flex justify-content-end align-items-center w-100 h-100">
+            <Button variant="primary" onClick={handleClick}>
+            <FontAwesomeIcon icon={faUserFriends} style={{ marginRight:'20px'}}/>
               Find Friends
             </Button>
           </div>
@@ -68,7 +71,7 @@ function NewsFeed() {
                 <ul className="list-group">
                 <Nav.Link>
                   <Link to="" className="text-decoration-none">
-                    <li className="list-group-item fs-5 py-3 text-success shadow">
+                    <li className="list-group-item fs-5 py-3 text-primary shadow">
                       <span>
                         {" "}
                         <RiNewspaperLine /> Newsfeed
@@ -78,7 +81,7 @@ function NewsFeed() {
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="following" className="text-decoration-none">
-                    <li className="list-group-item fs-5 py-3 text-success shadow">
+                    <li className="list-group-item fs-5 py-3 text-dark shadow">
                       <span>
                         <RiRadarLine /> Following
                       </span>
@@ -87,7 +90,7 @@ function NewsFeed() {
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="follower" className="text-decoration-none">
-                    <li className="list-group-item fs-5 py-3 text-success shadow">
+                    <li className="list-group-item fs-5 py-3 text-dark shadow">
                       <span>
                         <RiBaseStationLine /> Followers
                       </span>
@@ -96,7 +99,7 @@ function NewsFeed() {
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="myprofile" className="text-decoration-none">
-                    <li className="list-group-item fs-5 py-3 text-success shadow">
+                    <li className="list-group-item fs-5 py-3 text-dark shadow">
                       <span>
                         <RiFolderUserLine /> My Posts
                       </span>
@@ -105,7 +108,7 @@ function NewsFeed() {
                 </Nav.Link>
                 <Nav.Link>
                   <Link to="editeprofile" className="text-decoration-none">
-                    <li className="list-group-item fs-5 py-3 text-success shadow">
+                    <li className="list-group-item fs-5 py-3 text-dark shadow">
                       <span>
                       <RiAccountCircleLine /> My Profile
                       </span>

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
 import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
 import PostItem from "./PostItem";
+import { Table } from "react-bootstrap";
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -21,10 +23,43 @@ function Profile() {
 
   return (
     <div>
-      <h1>Post of someone</h1>
+      <h2>{userInfo.firstName} {userInfo.lastName}</h2>
+
+      <Table striped bordered hover className="mt-5 mb-5">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{userInfo.firstName} {userInfo.lastName}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{userInfo.email}</td>
+          </tr>
+          <tr>
+            <td>Birthday</td>
+            <td>{userInfo.birthday}</td>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>{userInfo.id}</td>
+          </tr>
+        </tbody>
+      </Table>
+
       {postList !== null ? (
         postList.map((postItem) => {
           return (
+            <div>
+              <div>                   
+                
+              </div>
+              
             <PostItem
               key={postItem.id}
               postId={postItem.id}
@@ -38,6 +73,7 @@ function Profile() {
               commentList={postItem.comment}
               postDate={postItem.createdAt}
             />
+            </div>
           );
         })
       ) : (

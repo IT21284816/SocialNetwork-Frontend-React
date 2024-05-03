@@ -40,6 +40,7 @@ function NewsFeed() {
   });
 
   return (
+    // <div className={styles.background}>
     <Container className="pt-3">
       <Row className="mb-3">
         <Col md={4}>
@@ -47,7 +48,7 @@ function NewsFeed() {
             <Col md="auto" className="text-sm-start text-center mb-sm-0 mb-3">
               <img src={logo} width="80" alt="logo" />
             </Col>
-            <Col className="text-sm-start text-center text-success mb-sm-0 mb-3">
+            <Col className="text-sm-start text-center text-dark mb-sm-0 mb-3">
               <h2>Social Network</h2>
             </Col>
           </Row>
@@ -137,6 +138,7 @@ function NewsFeed() {
         </Col>
       </Row>
     </Container>
+    //</div>
   );
 }
 

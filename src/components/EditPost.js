@@ -74,44 +74,53 @@ function EditPost() {
   };
 
   return (
-    <div>
-      <div className="border rounded-3 border-primary p-3 shadow">
-        <ToastContainer />
-        <Form onSubmit={handleUpdatePost}>
-          <Form.Group className="mb-3">
-            <Form.Control
-              as="textarea"
-              rows={4}
-              value={postContent}
-              onChange={handleContentChange}
-              style={{ resize: "none", height: "7rem" }}
-            />
-          </Form.Group>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="border rounded-3 border-primary p-4 shadow">
+            <ToastContainer />
+            <Form onSubmit={handleUpdatePost}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  as="textarea"
+                  rows={4}
+                  value={postContent}
+                  onChange={handleContentChange}
+                  style={{ resize: "none" }}
+                  placeholder="Enter your post content..."
+                />
+              </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Change Image (Optional)</Form.Label>
-            <Form.Control
-              type="file"
-              accept=".jpg, .jpeg, .png"
-              onChange={(e) => compressImageFile(e)}
-            />
-          </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Change Image (Optional)</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={(e) => compressImageFile(e)}
+                />
+              </Form.Group>
 
-          <div className="d-flex justify-content-end align-items-center">
-            <span>Characters: {postContentCount}/200</span>
-            <Button
-              variant="success"
-              disabled={disableEditButton}
-              type="submit"
-            >
-              Update
-            </Button>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>Characters: {postContentCount}/200</span>
+                <Button
+                  variant="success"
+                  disabled={disableEditButton}
+                  type="submit"
+                >
+                  Update
+                </Button>
+              </div>
+
+              {file64StringWithType && (
+                <img
+                  src={file64StringWithType}
+                  alt="existing or new image"
+                  className="mt-3 img-fluid"
+                />
+              )}
+            </Form>
           </div>
-
-          {file64StringWithType && (
-            <img src={file64StringWithType} alt="existing or new image" />
-          )}
-        </Form>
+        </div>
       </div>
     </div>
   );

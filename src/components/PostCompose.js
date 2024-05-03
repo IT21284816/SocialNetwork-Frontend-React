@@ -157,7 +157,7 @@ function PostCompose() {
   return (
     <div>
       {/* <h1>PostCompose component</h1> */}
-      <div className="border rounded-3 border-success p-3 shadow">
+      <div className="border rounded-3 border-dark p-3 shadow">
         <ToastContainer />
         <Form className="d-flex flex-column">
           <Form.Group className="mb-3">

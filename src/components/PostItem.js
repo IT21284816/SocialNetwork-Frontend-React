@@ -46,6 +46,10 @@ function PostItem(props) {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
 
+  const handleEditCommentClick = (commentId) => {
+    navigate(`/editcomment/${props.postId}/${commentId}`); // Redirect to the edit comment page
+  };
+
   function handleLoveClick() {
     setLoveStatus(!loveStatus);
     dispatch(addLove({ postId, userId: currentUserId }));
@@ -95,9 +99,7 @@ function PostItem(props) {
       });
   };
 
-  function handleEditCommentClick(commentId) {
-    // Implement your logic to delete the comment with the given commentId
-  }
+ 
 
   // Function to handle delete post
   function handleDeletePost() {

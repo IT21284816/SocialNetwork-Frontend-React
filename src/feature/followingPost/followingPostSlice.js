@@ -141,6 +141,25 @@ export const deleteCommentThunk = createAsyncThunk(
   }
 );
 
+export const getCommentById = createAsyncThunk(
+  'followingPost/getCommentById',
+  async (commentId) => {
+    const response = await axios.get(`/api/v1/getcomment/${commentId}`);
+    return response.data.payload;
+  }
+);
+
+export const editCommentThunk = createAsyncThunk(
+  'followingPost/editComment',
+  async ({ postId, commentId, newContent }) => {
+    const response = await axios.put(`/api/v1/editcomment`, {
+      commentId,
+      postId,
+      newContent,
+    });
+    return response.data;
+  }
+);
 
 
 

@@ -37,7 +37,7 @@ function AppContainer() {
         
         <Route path="details" element={<Details />} />
         <Route path="/editpost/:postId" element={<EditPost />} />
-        <Route path="/editcomment/:commentId" element={<EditComment />} />
+        <Route path="/editcomment/:postId/:commentId" element={<EditComment />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

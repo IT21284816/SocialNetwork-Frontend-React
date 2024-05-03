@@ -20,7 +20,7 @@ function AllAccounts() {
 
   return (
     <div>
-      <h1>List of User Accounts</h1>
+      <h2>List of User Accounts</h2>
       {storeFollowerAccounts ? (
         storeFollowerAccounts.map((followerAccount) => {
           return (

@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editCommentThunk, getCommentById } from '../feature/followingPost/followingPostSlice';
 
-function EditComment() {
-  const { postId, commentId } = useParams();
+function EditCommentModal({ show, onClose, postId, commentId }) {
   const [commentContent, setCommentContent] = useState('');
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Fetch the existing comment content
-    dispatch(getCommentById(commentId))
-      .then((response) => {
-        if (response.meta.requestStatus === 'fulfilled') {
-          setCommentContent(response.payload.content); // Set the current comment content
-        } else {
-          toast.error('Error loading comment.');
-          navigate(-1); // Go back if the comment doesn't exist
-        }
-      });
-  }, [commentId, dispatch, navigate]);
+    if (show) {
+      // Fetch the existing comment content when the modal is opened
+      dispatch(getCommentById(commentId))
+        .then((response) => {
+          if (response.meta.requestStatus === 'fulfilled') {
+            setCommentContent(response.payload.content); // Set the current comment content
+          } else {
+            toast.error('Error loading comment.');
+            onClose(); // Close the modal if there's an error
+          }
+        });
+    }
+  }, [commentId, dispatch, show, onClose]);
 
   const handleContentChange = (e) => {
     setCommentContent(e.target.value);
@@ -33,31 +32,41 @@ function EditComment() {
       .then((result) => {
         if (result.meta.requestStatus === 'fulfilled') {
           toast.success('Comment updated successfully!');
-          navigate(`/post/${postId}`); // Redirect to the post page or desired location
+          onClose(); // Close the modal upon success
         } else {
           toast.error('Failed to update comment.');
+          onClose();
         }
       });
   };
 
   return (
-    <div>
-      <h2>Edit Comment</h2>
-      <Form>
-        <Form.Group>
-          <Form.Label>Comment Content</Form.Label>
-          <Form.Control
-            type="text"
-            value={commentContent}
-            onChange={handleContentChange}
-          />
-        </Form.Group>
+    <Modal show={show} onHide={onClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Comment</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="editCommentContent">
+            <Form.Label>Comment Content</Form.Label>
+            <Form.Control
+              type="text"
+              value={commentContent}
+              onChange={handleContentChange}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Cancel
+        </Button>
         <Button variant="primary" onClick={handleSubmit}>
           Update Comment
         </Button>
-      </Form>
-    </div>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
-export default EditComment;
+export default EditCommentModal;

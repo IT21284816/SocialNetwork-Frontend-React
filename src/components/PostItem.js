@@ -3,7 +3,7 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useNavigate } from "react-router-dom";
-
+import EditCommentModal from './EditComment';
 import { toast } from 'react-toastify';
 
 
@@ -27,6 +27,7 @@ import {
   addComment,
   deletePostThunk,
   deleteCommentThunk,
+  editCommentThunk
   
 } from "../feature/followingPost/followingPostSlice";
 
@@ -43,13 +44,34 @@ function PostItem(props) {
   );
   const [postId, setPostId] = useState(props.postId);
 
+  const [showEditCommentModal, setShowEditCommentModal] = useState(false);
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [editCommentContent, setEditCommentContent] = useState("");
+
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
 
-  const handleEditCommentClick = (commentId) => {
-    navigate(`/editcomment/${props.postId}/${commentId}`); // Redirect to the edit comment page
+  const handleEditCommentClick = (commentId, commentContent) => {
+    setEditCommentId(commentId); // Set the ID of the comment to be edited
+    setEditCommentContent(commentContent); // Set the content of the comment
+    setShowEditCommentModal(true); // Show the modal
   };
 
+  const handleCloseEditCommentModal = () => {
+    setShowEditCommentModal(false); // Close the modal
+  };
+
+  const handleEditCommentSubmit = (newContent) => {
+    dispatch(editCommentThunk({ postId: props.postId, commentId: editCommentId, newContent }))
+      .then((result) => {
+        if (result.meta.requestStatus === "fulfilled") {
+          toast.success("Comment updated successfully!");
+          handleCloseEditCommentModal(); // Close the modal upon success
+        } else {
+          toast.error("Failed to update comment.");
+        }
+      });
+  };
   function handleLoveClick() {
     setLoveStatus(!loveStatus);
     dispatch(addLove({ postId, userId: currentUserId }));
@@ -246,6 +268,14 @@ function PostItem(props) {
             ))}
           </div>
         )}
+        {editCommentId && (
+        <EditCommentModal
+          show={showEditCommentModal}
+          onClose={handleCloseEditCommentModal}
+          postId={props.postId}
+          commentId={editCommentId}
+        />
+      )}
       </Row>
     </div>
   );

@@ -171,36 +171,19 @@ export const getCommentById = createAsyncThunk(
   }
 );
 
-export const editCommentThunk = createAsyncThunk(
-  "comments/edit",
-  async ({ postId, commentId, newContent }, thunkAPI) => {
-    const token = localStorage.getItem("psnToken");
-
-    try {
-      const response = await axios({
-        method: "put",
-        url: `/api/v1/editcomment`, // Endpoint for updating a comment
-        headers: {
-          Authorization: token,
-        },
-        data: {
-          commentId,
-          postId,
-          newContent,
-        },
-      });
-
-      if (response.status === 200) {
-        return { postId, commentId, newContent }; // Successful update
-      } else {
-        return thunkAPI.rejectWithValue("Failed to update comment.");
-      }
-    } catch (error) {
-      console.error("Error editing comment:", error.message);
-      return thunkAPI.rejectWithValue("Error updating comment.");
-    }
+// Asynchronous action to edit a comment
+export const editCommentThunk = createAsyncThunk('followingPost/editCommentThunk', async ({ postId, commentId, newContent }, thunkAPI) => {
+  try {
+    const response = await axios.put(`/api/v1/editcomment/${commentId}/${postId}`, {
+      content: newContent,
+    });
+    return response.data.payload; // Assuming the API returns the updated comment in "payload"
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
-);
+});
+
+
 
 
 
@@ -282,7 +265,6 @@ export const followingPostSlice = createSlice({
         builder.addCase(editPostThunk.rejected, (state, action) => {
           console.error("Failed to edit post:", action.error.message); // Error handling
         });
-      
     },
 });
 

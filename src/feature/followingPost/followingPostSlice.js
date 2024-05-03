@@ -141,25 +141,67 @@ export const deleteCommentThunk = createAsyncThunk(
   }
 );
 
+// Asynchronous thunk to get a comment by its ID
 export const getCommentById = createAsyncThunk(
-  'followingPost/getCommentById',
-  async (commentId) => {
-    const response = await axios.get(`/api/v1/getcomment/${commentId}`);
-    return response.data.payload;
+  "comments/getById",
+  async (commentId, thunkAPI) => {
+    const token = localStorage.getItem("psnToken"); // Authorization token
+    if (!token) {
+      return thunkAPI.rejectWithValue("Authorization token missing.");
+    }
+
+    try {
+      const response = await axios({
+        method: "get",
+        url: `/api/v1/comment/${commentId}`, // Endpoint for getting a comment by ID
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      if (response.status === 200) {
+        return response.data.payload; // Return the retrieved comment
+      } else {
+        return thunkAPI.rejectWithValue("Failed to get comment.");
+      }
+    } catch (error) {
+      console.error("Error getting comment:", error.message);
+      return thunkAPI.rejectWithValue("Error getting comment.");
+    }
   }
 );
 
 export const editCommentThunk = createAsyncThunk(
-  'followingPost/editComment',
-  async ({ postId, commentId, newContent }) => {
-    const response = await axios.put(`/api/v1/editcomment`, {
-      commentId,
-      postId,
-      newContent,
-    });
-    return response.data;
+  "comments/edit",
+  async ({ postId, commentId, newContent }, thunkAPI) => {
+    const token = localStorage.getItem("psnToken");
+
+    try {
+      const response = await axios({
+        method: "put",
+        url: `/api/v1/editcomment`, // Endpoint for updating a comment
+        headers: {
+          Authorization: token,
+        },
+        data: {
+          commentId,
+          postId,
+          newContent,
+        },
+      });
+
+      if (response.status === 200) {
+        return { postId, commentId, newContent }; // Successful update
+      } else {
+        return thunkAPI.rejectWithValue("Failed to update comment.");
+      }
+    } catch (error) {
+      console.error("Error editing comment:", error.message);
+      return thunkAPI.rejectWithValue("Error updating comment.");
+    }
   }
 );
+
 
 
 

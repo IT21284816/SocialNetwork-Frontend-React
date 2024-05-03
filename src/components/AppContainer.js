@@ -16,7 +16,6 @@ import UnauthorizedPage from "./UnauthorizedPage";
 import EditeProfile from "./EditeProfile";
 import EditPost from "./EditPost"; // Import your EditPost component
 import EditComment from "./EditComment"
-import Details from "./Details"
 
 function AppContainer() {
   return (
@@ -35,7 +34,6 @@ function AppContainer() {
           <Route path="editeprofile" element={<EditeProfile />} />
         </Route>
         
-        <Route path="details" element={<Details />} />
         <Route path="/editpost/:postId" element={<EditPost />} />
         <Route path="/editcomment/:postId/:commentId" element={<EditComment />} /> 
         <Route path="/unauthorized" element={<UnauthorizedPage />} />

@@ -69,6 +69,7 @@ function SignIn() {
   }
 
   return (
+    <div className={styles.background}>
     <Container fluid className={styles.container}>
       <ToastContainer />
       <Formik
@@ -96,7 +97,7 @@ function SignIn() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-            <Row className="mb-5 text-center">
+            <Row className="mb-3 text-center">
               <h1 className="text-primary">Sign In</h1>
             </Row>
             <Row className="mb-3">
@@ -107,6 +108,7 @@ function SignIn() {
                   name="email"
                   value={values.email}
                   onChange={handleChange}
+                  className={styles.customInput}
                   isInvalid={touched.email && errors.email}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -114,7 +116,7 @@ function SignIn() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Row className="mb-3">
+            <Row className="mb-5">
               <Form.Group as={Col} md="12" controlId="signInPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -122,6 +124,7 @@ function SignIn() {
                   name="password"
                   value={values.password}
                   onChange={handleChange}
+                  className={styles.customInput}
                   isInvalid={touched.password && errors.password}
                 />
 
@@ -130,13 +133,14 @@ function SignIn() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Button type="submit" variant="primary">
+            <Button className="mb-3 " type="submit" variant="primary">
               Sign In <RiLoginBoxLine />
             </Button>
           </Form>
         )}
       </Formik>
     </Container>
+    </div>
   );
 }
 

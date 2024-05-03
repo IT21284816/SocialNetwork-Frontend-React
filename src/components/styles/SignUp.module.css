@@ -18,3 +18,30 @@
         width: 95%;
     }
 }
+
+.background {
+    background-image: url('../assets/home-background.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* YourStyles.module.css */
+/* YourStyles.module.css */
+.formContainer {
+    padding: 20px;
+    border-radius: 20px; /* Optional: Change this value for desired roundness */
+    backdrop-filter: blur(20px); /* Adjust blur intensity */
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: Transparent border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    width: 600px; /* Set width as needed */
+    margin: 20px auto; /* Center the form */
+  }
+
+  .customInput {
+    border-radius: 15px; /* Adjust the border radius as needed */
+    border: 1px solid #ccc; /* Optional: Adjust the border style/color */
+    padding: 10px; /* Optional: Adjust the padding */
+  }
+  
+  

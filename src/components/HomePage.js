@@ -44,18 +44,18 @@ function HomePage() {
         <Col className={styles.colContainerRight}>
           <div className={styles.colWithButtons}>            
             <Row>
-              <h1 className="text-success mb-3">See what is happening in the world right now</h1>
+              <h1 className="text-dark mb-3">See what is happening in the world right now</h1>
             </Row>
             <br />
             <Row>
-              <h3 className="text-success mb-3">Join penguin social network today</h3>
+              <h3 className="text-secondary mb-3">Join Duhun Social Network Today</h3>
             </Row>{" "}
             <br />
             <Row>
-              <Link to="/signin" className={styles.linkTextFormat}><Button variant="success" className={`${styles.btnHomePage} mb-3`}>Sign In <RiLoginBoxLine /></Button></Link>
+              <Link to="/signin" className={styles.linkTextFormat}><Button variant="primary" className={`${styles.btnHomePage} mb-3`}>Sign In <RiLoginBoxLine /></Button></Link>
             </Row>
             <Row>
-            <Link to="/signup" className={styles.linkTextFormat}><Button variant="success" className={styles.btnHomePage}>Sign Up <BsFillPersonPlusFill /></Button></Link>
+            <Link to="/signup" className={styles.linkTextFormat}><Button variant="info" className={styles.btnHomePage}>Sign Up <BsFillPersonPlusFill /></Button></Link>
             </Row>
           </div>
         </Col>

@@ -8,4 +8,16 @@ npm i / npm start
 
 ![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/c1af40a2-777f-4b9d-b153-1e72d52f4b72)
 
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/4b37f6e5-cfcf-4df9-a4a3-8cbe5b213394)
+
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/66ec4512-86e5-4744-9e54-5cac9dc5b51c)
+
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/19a36f41-9504-45ec-887f-ee6324c0f145)
+
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/bef27b41-5f2e-4824-b5e5-15dfbbe92409)
+
+
+
+
+
 

@@ -1,6 +1,14 @@
 React project Frontend for Social media app for PAF module.
 npm i / npm start
 
+User can register and login 
+user can follow unfollow friends
+user can add, edite, delete posts
+user can comment, edite comment, delete comments
+user can share posts
+view friends profile
+
+
 
 ![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/dc44b9d6-3549-48bc-8181-ac77ed7f29a8)
 
@@ -16,8 +24,10 @@ npm i / npm start
 
 ![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/bef27b41-5f2e-4824-b5e5-15dfbbe92409)
 
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/669bfd7a-7717-471c-b005-a817931b2b71)
 
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/4655d61f-f97f-4bd6-86d5-5134da678518)
 
-
+![image](https://github.com/IT21284816/SocialNetwork-Frontend-React/assets/99232799/12502e58-4660-4be6-a9f8-2ae33dd93e0c)
 
 
